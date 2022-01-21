@@ -1,0 +1,58 @@
+{
+  "root": "apps/nx-quick",
+  "sourceRoot": "apps/nx-quick/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/nx-quick",
+        "main": "apps/nx-quick/src/main.ts",
+        "tsConfig": "apps/nx-quick/tsconfig.app.json",
+        "assets": ["apps/nx-quick/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/nx-quick/src/environments/environment.ts",
+              "with": "apps/nx-quick/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "nx-quick:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/nx-quick/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/nx-quick"],
+      "options": {
+        "jestConfig": "apps/nx-quick/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "create-shortcut": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["node apps/nx-quick/src/create-shortcut.js"]
+      }
+    }
+  },
+  "tags": []
+}

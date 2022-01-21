@@ -1,10 +1,10 @@
 {
-  "npmScope": "nx-quick-script",
+  "npmScope": "node-scripts",
   "affected": {
     "defaultBase": "master"
   },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
+    "defaultCollection": "@nrwl/node"
   },
   "implicitDependencies": {
     "package.json": {
@@ -28,5 +28,6 @@
         "projects": "dependencies"
       }
     ]
-  }
+  },
+  "defaultProject": "nx-quick"
 }
